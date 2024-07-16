@@ -36,7 +36,7 @@ class PathMiddlewareDecoratorIntegrationTest extends TestCase
             return $request;
         });
         $second = new PathMiddlewareDecorator('/foo', $this->createNestedPipeline($request));
-        $last   = $this->createPassThroughMiddleware(static function ($received) use ($request) {
+        $last   = $this->createPassThroughMiddleware(static function (ServerRequestInterface $received) use ($request) {
             self::assertNotSame(
                 $request,
                 $received,
@@ -114,7 +114,7 @@ class PathMiddlewareDecoratorIntegrationTest extends TestCase
             ->method('process')
             ->with(
                 self::callback(
-                    static function ($request) use ($originalRequest) {
+                    static function (ServerRequestInterface $request) use ($originalRequest) {
                         self::assertNotSame(
                             $originalRequest,
                             $request,
