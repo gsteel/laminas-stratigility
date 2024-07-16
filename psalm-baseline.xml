@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.20.0@3f284e96c9d9be6fe6b15c79416e1d1903dcfef4">
+<files psalm-version="5.25.0@01a8eb06b9e9cc6cfb6a320bf9fb14331919d505">
   <file src="src/Middleware/DoublePassMiddlewareDecorator.php">
     <MissingClosureParamType>
-      <code>$request</code>
-      <code>$response</code>
+      <code><![CDATA[$request]]></code>
+      <code><![CDATA[$response]]></code>
     </MissingClosureParamType>
     <MixedArgument>
-      <code>$request</code>
+      <code><![CDATA[$request]]></code>
     </MixedArgument>
     <UnusedClosureParam>
-      <code>$response</code>
+      <code><![CDATA[$response]]></code>
     </UnusedClosureParam>
   </file>
   <file src="src/Middleware/ErrorHandler.php">
@@ -19,141 +19,69 @@
   </file>
   <file src="src/Middleware/ErrorResponseGenerator.php">
     <UnusedParam>
-      <code>$request</code>
+      <code><![CDATA[$request]]></code>
     </UnusedParam>
   </file>
   <file src="src/Middleware/HostMiddlewareDecorator.php">
     <PossiblyUnusedReturnValue>
-      <code>ResponseInterface</code>
+      <code><![CDATA[ResponseInterface]]></code>
     </PossiblyUnusedReturnValue>
-  </file>
-  <file src="src/Next.php">
-    <MixedAssignment>
-      <code>$middleware</code>
-    </MixedAssignment>
-    <MixedInferredReturnType>
-      <code>ResponseInterface</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall>
-      <code>process</code>
-    </MixedMethodCall>
-    <MixedReturnStatement>
-      <code><![CDATA[$middleware->process($request, $next)]]></code>
-    </MixedReturnStatement>
-  </file>
-  <file src="test/Exception/ExceptionTest.php">
-    <MixedInferredReturnType>
-      <code>Generator</code>
-    </MixedInferredReturnType>
-    <PossiblyFalseOperand>
-      <code><![CDATA[strrpos(ExceptionInterface::class, '\\')]]></code>
-    </PossiblyFalseOperand>
   </file>
   <file src="test/Middleware/CallableMiddlewareDecoratorTest.php">
     <MissingClosureParamType>
-      <code>$handler</code>
-      <code>$request</code>
+      <code><![CDATA[$handler]]></code>
+      <code><![CDATA[$request]]></code>
     </MissingClosureParamType>
     <UnusedClosureParam>
-      <code>$handler</code>
-      <code>$request</code>
+      <code><![CDATA[$handler]]></code>
+      <code><![CDATA[$request]]></code>
     </UnusedClosureParam>
   </file>
   <file src="test/Middleware/DoublePassMiddlewareDecoratorExceptionTest.php">
     <MissingClosureParamType>
-      <code>$next</code>
-      <code>$request</code>
+      <code><![CDATA[$next]]></code>
+      <code><![CDATA[$request]]></code>
     </MissingClosureParamType>
     <MixedArgument>
-      <code>$autoloader</code>
+      <code><![CDATA[$autoloader]]></code>
     </MixedArgument>
     <MixedAssignment>
-      <code>$autoloader</code>
+      <code><![CDATA[$autoloader]]></code>
     </MixedAssignment>
     <UnusedClosureParam>
-      <code>$next</code>
+      <code><![CDATA[$next]]></code>
     </UnusedClosureParam>
   </file>
   <file src="test/Middleware/DoublePassMiddlewareDecoratorTest.php">
     <MissingClosureParamType>
-      <code>$next</code>
-      <code>$next</code>
-      <code>$next</code>
-      <code>$next</code>
-      <code>$request</code>
-      <code>$request</code>
-      <code>$request</code>
-      <code>$request</code>
-      <code>$response</code>
-      <code>$response</code>
+      <code><![CDATA[$next]]></code>
+      <code><![CDATA[$next]]></code>
+      <code><![CDATA[$next]]></code>
+      <code><![CDATA[$next]]></code>
+      <code><![CDATA[$request]]></code>
+      <code><![CDATA[$request]]></code>
+      <code><![CDATA[$request]]></code>
+      <code><![CDATA[$request]]></code>
+      <code><![CDATA[$response]]></code>
+      <code><![CDATA[$response]]></code>
     </MissingClosureParamType>
     <UnusedClosureParam>
-      <code>$next</code>
-      <code>$next</code>
-      <code>$next</code>
-      <code>$next</code>
-      <code>$request</code>
-      <code>$request</code>
-      <code>$response</code>
-      <code>$response</code>
+      <code><![CDATA[$next]]></code>
+      <code><![CDATA[$next]]></code>
+      <code><![CDATA[$next]]></code>
+      <code><![CDATA[$next]]></code>
+      <code><![CDATA[$request]]></code>
+      <code><![CDATA[$request]]></code>
+      <code><![CDATA[$response]]></code>
+      <code><![CDATA[$response]]></code>
     </UnusedClosureParam>
   </file>
   <file src="test/Middleware/ErrorHandlerTest.php">
     <MixedArgument>
-      <code>$listeners</code>
+      <code><![CDATA[$listeners]]></code>
     </MixedArgument>
     <MixedAssignment>
-      <code>$listeners</code>
+      <code><![CDATA[$listeners]]></code>
     </MixedAssignment>
-  </file>
-  <file src="test/Middleware/HostMiddlewareDecoratorTest.php">
-    <MixedInferredReturnType>
-      <code>Generator</code>
-    </MixedInferredReturnType>
-  </file>
-  <file src="test/Middleware/PathMiddlewareDecoratorIntegrationTest.php">
-    <MixedAssignment>
-      <code>$receivedUri</code>
-    </MixedAssignment>
-    <MixedMethodCall>
-      <code>getPath</code>
-      <code>getPath</code>
-      <code>getUri</code>
-      <code>getUri</code>
-    </MixedMethodCall>
-    <MixedOperand>
-      <code>$path</code>
-    </MixedOperand>
-  </file>
-  <file src="test/Middleware/PathMiddlewareDecoratorTest.php">
-    <MixedMethodCall>
-      <code>getPath</code>
-      <code>getUri</code>
-    </MixedMethodCall>
-    <ParamNameMismatch>
-      <code>$req</code>
-    </ParamNameMismatch>
-  </file>
-  <file src="test/MiddlewarePipeTest.php">
-    <ParamNameMismatch>
-      <code>$req</code>
-      <code>$req</code>
-    </ParamNameMismatch>
-  </file>
-  <file src="test/NextTest.php">
-    <ParamNameMismatch>
-      <code>$req</code>
-      <code>$req</code>
-    </ParamNameMismatch>
-  </file>
-  <file src="test/TestAsset/DelegatingMiddleware.php">
-    <ParamNameMismatch>
-      <code>$req</code>
-    </ParamNameMismatch>
-  </file>
-  <file src="test/TestAsset/ShortCircuitingMiddleware.php">
-    <ParamNameMismatch>
-      <code>$req</code>
-    </ParamNameMismatch>
   </file>
 </files>
