@@ -6,9 +6,9 @@ and provide guidance on how to upgrade your application to be compatible.
 - [PHP support](#php-support)
 - [PSR-17](#psr-17)
 - [Changes in public interfaces](#changes-in-public-interfaces)
-  - [Signature changes](#signature-changes)
-  - [Removed classes and exceptions](#removed-classes-and-exceptions)
-  - [Removed functions](#removed-functions)
+    - [Signature changes](#signature-changes)
+    - [Removed classes and exceptions](#removed-classes-and-exceptions)
+    - [Removed functions](#removed-functions)
 
 ## PHP support
 
