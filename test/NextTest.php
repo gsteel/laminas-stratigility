@@ -24,6 +24,7 @@ class NextTest extends TestCase
 {
     use MiddlewareTrait;
 
+    /** @var SplQueue<MiddlewareInterface> */
     private SplQueue $queue;
     private Request $request;
 
@@ -33,6 +34,7 @@ class NextTest extends TestCase
 
     protected function setUp(): void
     {
+        /** @psalm-var SplQueue<MiddlewareInterface> */
         $this->queue           = new SplQueue();
         $this->request         = new Request([], [], 'http://example.com/', 'GET', 'php://memory');
         $this->fallbackHandler = $this->createFallbackHandler();
@@ -87,8 +89,10 @@ class NextTest extends TestCase
                 $this->cannedRequest = $cannedRequest;
             }
 
-            public function process(ServerRequestInterface $req, RequestHandlerInterface $handler): ResponseInterface
-            {
+            public function process(
+                ServerRequestInterface $request,
+                RequestHandlerInterface $handler,
+            ): ResponseInterface {
                 return $handler->handle($this->cannedRequest);
             }
         };
@@ -102,9 +106,11 @@ class NextTest extends TestCase
                 $this->cannedRequest = $cannedRequest;
             }
 
-            public function process(ServerRequestInterface $req, RequestHandlerInterface $handler): ResponseInterface
-            {
-                Assert::assertEquals($this->cannedRequest->getMethod(), $req->getMethod());
+            public function process(
+                ServerRequestInterface $request,
+                RequestHandlerInterface $handler,
+            ): ResponseInterface {
+                Assert::assertEquals($this->cannedRequest->getMethod(), $request->getMethod());
                 return new Response();
             }
         };

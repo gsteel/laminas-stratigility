@@ -12,7 +12,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class ShortCircuitingMiddleware implements MiddlewareInterface
 {
-    public function process(ServerRequestInterface $req, RequestHandlerInterface $handler): ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         return new Response();
     }
