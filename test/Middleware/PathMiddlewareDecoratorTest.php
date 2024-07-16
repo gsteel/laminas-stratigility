@@ -317,8 +317,10 @@ class PathMiddlewareDecoratorTest extends TestCase
             ->willReturn(new Response());
 
         $middleware = new PathMiddlewareDecorator($path, new class () implements MiddlewareInterface {
-            public function process(ServerRequestInterface $req, RequestHandlerInterface $handler): ResponseInterface
-            {
+            public function process(
+                ServerRequestInterface $request,
+                RequestHandlerInterface $handler,
+            ): ResponseInterface {
                 $res = new Response();
                 return $res->withHeader('X-Found', 'true');
             }
@@ -365,7 +367,7 @@ class PathMiddlewareDecoratorTest extends TestCase
         $finalHandler
             ->method('handle')
             ->with(
-                self::callback(static function ($received) use ($request) {
+                self::callback(static function (ServerRequestInterface $received) use ($request) {
                     self::assertNotSame(
                         $request,
                         $received,

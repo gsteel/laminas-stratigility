@@ -33,10 +33,9 @@ recommend the following:
 - Pipe `Laminas\Stratigility\Middleware\OriginalMessages` as the outermost layer of
   your application. This will inject the following request attributes into
   layers beneath it:
-  - `originalRequest`, mapping to the request provided to it at invocation.
-  - `originalResponse`, mapping to the response provided to it at invocation.
-  - `originalUri`, mapping to the URI composed by the request provided to it at
-     invocation.
+    - `originalRequest`, mapping to the request provided to it at invocation.
+    - `originalResponse`, mapping to the response provided to it at invocation.
+    - `originalUri`, mapping to the URI composed by the request provided to it at invocation.
 
 You can then access these values within other middleware:
 
@@ -454,7 +453,7 @@ class PingMiddleware implements ServerMiddlewareInterface
 
 > ### Implementing http-interop between Stratigility 1.3 and 2.0
 >
-> While you _can_ write your middleware to implement the
+> While you *can* write your middleware to implement the
 > http-interop/http-middleware middleware interface, please be aware that if you
 > do so, you will need to take additional steps when upgrading from 1.3 to 2.0.
 >
@@ -594,11 +593,11 @@ The following classes, methods, and arguments are deprecated starting in version
 The following signature changes were made with the 2.0.0 release:
 
 - `Laminas\Stratigility\Next`:
-  - The `$done` constructor argument was renamed to `$nextDelegate`, and now
-    allows either `callable` or `Interop\Http\ServerMiddleware\DelegateInterface`
-    arguments.
-  - The `$response` argument to `__invoke()` was removed.
-  - The (optional) `$err` argument to `__invoke()` was removed.
+    - The `$done` constructor argument was renamed to `$nextDelegate`, and now
+      allows either `callable` or `Interop\Http\ServerMiddleware\DelegateInterface`
+      arguments.
+    - The `$response` argument to `__invoke()` was removed.
+    - The (optional) `$err` argument to `__invoke()` was removed.
 
 ## Removed functionality
 

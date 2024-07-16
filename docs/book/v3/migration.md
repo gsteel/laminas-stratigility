@@ -3,15 +3,17 @@
 In this document, we outline the backwards breaking changes with version 3.0,
 and provide guidance on how to upgrade your application to be compatible.
 
+<!-- markdownlint-disable link-fragments -->
 - [PHP support](#php-support)
 - [PSR-15](#psr-15)
 - [Pipeline (`MiddlewarePipe`)](#pipeline-middlewarepipe)
 - [Changes in public interfaces](#changes-in-public-interfaces)
-  - [Signature changes](#signature-changes)
-  - [Class additions](#class-additions)
-  - [Removed classes and exceptions](#removed-classes-and-exceptions)
-  - [Removed methods](#removed-methods)
-  - [Function additions](#function-additions)
+    - [Signature changes](#signature-changes)
+    - [Class additions](#class-additions)
+    - [Removed classes and exceptions](#removed-classes-and-exceptions)
+    - [Removed methods](#removed-methods)
+    - [Function additions](#function-additions)
+<!-- markdownlint-enable link-fragments -->
 
 ## PHP support
 

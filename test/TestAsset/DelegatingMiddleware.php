@@ -11,8 +11,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class DelegatingMiddleware implements MiddlewareInterface
 {
-    public function process(ServerRequestInterface $req, RequestHandlerInterface $handler): ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        return $handler->handle($req);
+        return $handler->handle($request);
     }
 }

@@ -70,6 +70,7 @@ class HostMiddlewareDecoratorTest extends TestCase
         $decorator->process($this->request, $this->handler);
     }
 
+    /** @return Generator<int, array{0: string, 1: string}> */
     public static function matchingHost(): Generator
     {
         yield ['host.foo', 'host.foo'];

@@ -86,9 +86,11 @@ class MiddlewarePipeTest extends TestCase
     {
         $this->pipeline->pipe(new class () implements MiddlewareInterface
         {
-            public function process(ServerRequestInterface $req, RequestHandlerInterface $handler): ResponseInterface
-            {
-                $res = $handler->handle($req);
+            public function process(
+                ServerRequestInterface $request,
+                RequestHandlerInterface $handler,
+            ): ResponseInterface {
+                $res = $handler->handle($request);
                 $res->getBody()->write("First\n");
 
                 return $res;
@@ -96,9 +98,11 @@ class MiddlewarePipeTest extends TestCase
         });
         $this->pipeline->pipe(new class () implements MiddlewareInterface
         {
-            public function process(ServerRequestInterface $req, RequestHandlerInterface $handler): ResponseInterface
-            {
-                $res = $handler->handle($req);
+            public function process(
+                ServerRequestInterface $request,
+                RequestHandlerInterface $handler,
+            ): ResponseInterface {
+                $res = $handler->handle($request);
                 $res->getBody()->write("Second\n");
 
                 return $res;
