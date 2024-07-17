@@ -10,6 +10,8 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use SplQueue;
 
+use function iterator_to_array;
+
 /**
  * Pipe middleware like unix pipes.
  *
@@ -83,5 +85,13 @@ final class MiddlewarePipe implements MiddlewarePipeInterface
     public function pipe(MiddlewareInterface $middleware): void
     {
         $this->pipeline->enqueue($middleware);
+    }
+
+    /** @return list<MiddlewareInterface> */
+    public function toArray(): array
+    {
+        $pipeline = clone $this->pipeline;
+
+        return iterator_to_array($pipeline, false);
     }
 }

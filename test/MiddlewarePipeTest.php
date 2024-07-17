@@ -17,7 +17,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionObject;
+use SplQueue;
 
+use function iterator_to_array;
 use function sort;
 use function spl_object_hash;
 use function strpos;
@@ -64,15 +66,15 @@ class MiddlewarePipeTest extends TestCase
                     static function ($argument1): bool {
                         self::assertInstanceOf(ServerRequestInterface::class, $argument1);
                         return true;
-                    }
+                    },
                 ),
                 self::callback(
                     /** @psalm-suppress MissingClosureParamType */
                     static function ($argument2): bool {
                             self::assertInstanceOf(RequestHandlerInterface::class, $argument2);
                             return true;
-                    }
-                )
+                    },
+                ),
             )
             ->willReturn($response);
 
@@ -177,12 +179,12 @@ class MiddlewarePipeTest extends TestCase
         $middleware1
             ->method('process')
             ->with(
-                $this->request
+                $this->request,
             )
             ->willReturnCallback(
                 static fn(
                     ServerRequestInterface $request,
-                    RequestHandlerInterface $handler): ResponseInterface => $handler->handle($request)
+                    RequestHandlerInterface $handler): ResponseInterface => $handler->handle($request),
             );
         $middleware2 = $this->createMock(MiddlewareInterface::class);
         $middleware2
@@ -222,5 +224,41 @@ class MiddlewarePipeTest extends TestCase
         self::assertTrue($r->isFinal());
         self::assertEquals($expected, $actual);
         self::assertInstanceOf(MiddlewarePipeInterface::class, $pipeline);
+    }
+
+    public function testThatToArrayReturnsEnqueuedMiddlewareAsAListInQueueOrder(): void
+    {
+        $pipeline = new MiddlewarePipe();
+        $a        = $this->createMock(MiddlewareInterface::class);
+        $b        = $this->createMock(MiddlewareInterface::class);
+        $c        = $this->createMock(MiddlewareInterface::class);
+
+        $pipeline->pipe($c);
+        $pipeline->pipe($a);
+        $pipeline->pipe($b);
+
+        self::assertSame([$c, $a, $b], $pipeline->toArray());
+    }
+
+    public function testThatCloningThePipelineAlsoClonesTheInternalQueue(): void
+    {
+        $pipe = new MiddlewarePipe();
+        $pipe->pipe($this->createMock(MiddlewareInterface::class));
+
+        $clone = clone $pipe;
+
+        $reflectionClass = new ReflectionClass(MiddlewarePipe::class);
+        $property        = $reflectionClass->getProperty('pipeline');
+
+        $queue1 = $property->getValue($pipe);
+        self::assertInstanceOf(SplQueue::class, $queue1);
+        $queue2 = $property->getValue($clone);
+        self::assertInstanceOf(SplQueue::class, $queue2);
+
+        self::assertNotSame($queue1, $queue2);
+        self::assertSame(
+            iterator_to_array($queue1, false),
+            iterator_to_array($queue2, false),
+        );
     }
 }

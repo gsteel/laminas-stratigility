@@ -10,4 +10,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 interface MiddlewarePipeInterface extends MiddlewareInterface, RequestHandlerInterface
 {
     public function pipe(MiddlewareInterface $middleware): void;
+
+    /** @return list<MiddlewareInterface> */
+    public function toArray(): array;
 }
