@@ -36,6 +36,10 @@ public function __construct(ResponseFactoryInterface $responseFactory){}
 
 ## Changes in public interfaces
 
+### MiddlewarePipe is now Iterable
+
+`MiddlewarePipe` now implements a new interface `IterableMiddlewarePipeInterface`. This makes the pipeline iterable and provides a way of inspecting the composed middleware.
+
 ### Signature changes
 
 - `Laminas\Stratigility\Handler\NotFoundHandler::__construct()`: the parameter `$responseFactory` changed from `callable` to `Psr\Http\Message\ResponseFactoryInterface`.
