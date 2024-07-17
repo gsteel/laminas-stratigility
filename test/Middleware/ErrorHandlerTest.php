@@ -26,20 +26,11 @@ use const E_USER_DEPRECATED;
 
 class ErrorHandlerTest extends TestCase
 {
-    /** @var MockObject&StreamInterface */
-    private $body;
-
-    /** @var MockObject&RequestHandlerInterface */
-    private $handler;
-
-    /** @var MockObject&ServerRequestInterface */
-    private $request;
-
-    /** @var MockObject&ResponseInterface */
-    private $response;
-
-    /** @var MockObject&ResponseFactoryInterface */
-    private ResponseFactoryInterface $responseFactory;
+    private StreamInterface&MockObject $body;
+    private RequestHandlerInterface&MockObject $handler;
+    private ServerRequestInterface&MockObject $request;
+    private ResponseInterface&MockObject $response;
+    private ResponseFactoryInterface&MockObject $responseFactory;
 
     private int $errorReporting;
 
@@ -325,7 +316,7 @@ class ErrorHandlerTest extends TestCase
         $prop = $ref->getProperty('listeners');
 
         $listeners = $prop->getValue($middleware);
-
+        self::assertIsArray($listeners);
         self::assertCount(1, $listeners);
     }
 }
