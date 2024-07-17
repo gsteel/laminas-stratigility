@@ -12,7 +12,7 @@ and provide guidance on how to upgrade your application to be compatible.
 
 ## PHP support
 
-We now support only PHP versions 7.4 and above.
+We now support only PHP versions 8.1 and above.
 
 ## PSR-17
 
