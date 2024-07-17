@@ -7,6 +7,7 @@ namespace LaminasTest\Stratigility;
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\ServerRequest as Request;
 use Laminas\Stratigility\Exception;
+use Laminas\Stratigility\IterableMiddlewarePipeInterface;
 use Laminas\Stratigility\MiddlewarePipe;
 use Laminas\Stratigility\MiddlewarePipeInterface;
 use PHPUnit\Framework\TestCase;
@@ -207,17 +208,13 @@ class MiddlewarePipeTest extends TestCase
         $methods = $r->getMethods(ReflectionMethod::IS_PUBLIC);
         $actual  = [];
         foreach ($methods as $method) {
-            if ($method->getName() === 'toArray') {
-                continue;
-            }
-
             if (strpos($method->getName(), '__') !== 0) {
                 $actual[] = $method->getName();
             }
         }
         sort($actual);
 
-        $interfaceReflection = new ReflectionClass(MiddlewarePipeInterface::class);
+        $interfaceReflection = new ReflectionClass(IterableMiddlewarePipeInterface::class);
         $interfaceMethods    = $interfaceReflection->getMethods(ReflectionMethod::IS_PUBLIC);
         $expected            = [];
         foreach ($interfaceMethods as $method) {
@@ -230,7 +227,7 @@ class MiddlewarePipeTest extends TestCase
         self::assertInstanceOf(MiddlewarePipeInterface::class, $pipeline);
     }
 
-    public function testThatToArrayReturnsEnqueuedMiddlewareAsAListInQueueOrder(): void
+    public function testThatTheIteratorYieldsEnqueuedMiddlewareInQueueOrder(): void
     {
         $pipeline = new MiddlewarePipe();
         $a        = $this->createMock(MiddlewareInterface::class);
@@ -241,7 +238,7 @@ class MiddlewarePipeTest extends TestCase
         $pipeline->pipe($a);
         $pipeline->pipe($b);
 
-        self::assertSame([$c, $a, $b], $pipeline->toArray());
+        self::assertSame([$c, $a, $b], iterator_to_array($pipeline, false));
     }
 
     public function testThatCloningThePipelineAlsoClonesTheInternalQueue(): void
