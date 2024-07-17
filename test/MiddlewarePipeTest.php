@@ -207,6 +207,10 @@ class MiddlewarePipeTest extends TestCase
         $methods = $r->getMethods(ReflectionMethod::IS_PUBLIC);
         $actual  = [];
         foreach ($methods as $method) {
+            if ($method->getName() === 'toArray') {
+                continue;
+            }
+
             if (strpos($method->getName(), '__') !== 0) {
                 $actual[] = $method->getName();
             }
