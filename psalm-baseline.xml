@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="5.25.0@01a8eb06b9e9cc6cfb6a320bf9fb14331919d505">
   <file src="src/Middleware/DoublePassMiddlewareDecorator.php">
-    <MissingClosureParamType>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$response]]></code>
-    </MissingClosureParamType>
-    <MixedArgument>
-      <code><![CDATA[$request]]></code>
-    </MixedArgument>
     <UnusedClosureParam>
       <code><![CDATA[$response]]></code>
     </UnusedClosureParam>
-  </file>
-  <file src="src/Middleware/ErrorHandler.php">
-    <MixedArgumentTypeCoercion>
-      <code><![CDATA[$this->createErrorHandler()]]></code>
-    </MixedArgumentTypeCoercion>
   </file>
   <file src="src/Middleware/ErrorResponseGenerator.php">
     <UnusedParam>
@@ -26,62 +14,5 @@
     <PossiblyUnusedReturnValue>
       <code><![CDATA[ResponseInterface]]></code>
     </PossiblyUnusedReturnValue>
-  </file>
-  <file src="test/Middleware/CallableMiddlewareDecoratorTest.php">
-    <MissingClosureParamType>
-      <code><![CDATA[$handler]]></code>
-      <code><![CDATA[$request]]></code>
-    </MissingClosureParamType>
-    <UnusedClosureParam>
-      <code><![CDATA[$handler]]></code>
-      <code><![CDATA[$request]]></code>
-    </UnusedClosureParam>
-  </file>
-  <file src="test/Middleware/DoublePassMiddlewareDecoratorExceptionTest.php">
-    <MissingClosureParamType>
-      <code><![CDATA[$next]]></code>
-      <code><![CDATA[$request]]></code>
-    </MissingClosureParamType>
-    <MixedArgument>
-      <code><![CDATA[$autoloader]]></code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code><![CDATA[$autoloader]]></code>
-    </MixedAssignment>
-    <UnusedClosureParam>
-      <code><![CDATA[$next]]></code>
-    </UnusedClosureParam>
-  </file>
-  <file src="test/Middleware/DoublePassMiddlewareDecoratorTest.php">
-    <MissingClosureParamType>
-      <code><![CDATA[$next]]></code>
-      <code><![CDATA[$next]]></code>
-      <code><![CDATA[$next]]></code>
-      <code><![CDATA[$next]]></code>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$response]]></code>
-      <code><![CDATA[$response]]></code>
-    </MissingClosureParamType>
-    <UnusedClosureParam>
-      <code><![CDATA[$next]]></code>
-      <code><![CDATA[$next]]></code>
-      <code><![CDATA[$next]]></code>
-      <code><![CDATA[$next]]></code>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$request]]></code>
-      <code><![CDATA[$response]]></code>
-      <code><![CDATA[$response]]></code>
-    </UnusedClosureParam>
-  </file>
-  <file src="test/Middleware/ErrorHandlerTest.php">
-    <MixedArgument>
-      <code><![CDATA[$listeners]]></code>
-    </MixedArgument>
-    <MixedAssignment>
-      <code><![CDATA[$listeners]]></code>
-    </MixedAssignment>
   </file>
 </files>

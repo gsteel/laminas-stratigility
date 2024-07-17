@@ -153,16 +153,19 @@ class ErrorHandler implements MiddlewareInterface
      * Creates and returns a callable error handler that raises exceptions.
      *
      * Only raises exceptions for errors that are within the error_reporting mask.
+     *
+     * @return callable(int, string, string=, int=, array<array-key, mixed>=): bool
      */
     private function createErrorHandler(): callable
     {
         /**
          * @throws ErrorException if error is not within the error_reporting mask.
+         * @return bool|never
          */
-        return static function (int $errno, string $errstr, string $errfile, int $errline): void {
+        return static function (int $errno, string $errstr, string $errfile = '', int $errline = 0): bool {
             if (! (error_reporting() & $errno)) {
                 // error_reporting does not include this error
-                return;
+                return true;
             }
 
             throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
